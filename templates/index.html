@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>File Converter</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <div class="background">
+
+        <div class="blur blur1"></div>
+
+        <div class="blur blur2"></div>
+
+    </div>
+
+
+    <button
+        id="themeToggle"
+        type="button"
+    >
+        ☾
+    </button>
+
+
+    <main class="card">
+
+        <header>
+
+            <div class="logo">
+
+                <span class="upload-icon">
+                    📄
+                </span>
+
+            </div>
+
+            <h1>
+                FILE CONVERTER
+            </h1>
+
+            <p>
+                Fast • Secure • Offline
+            </p>
+
+        </header>
+
+
+        <form
+            id="converterForm"
+            action="/convert"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <label
+                class="upload-area"
+                id="uploadArea"
+                for="fileInput"
+            >
+
+                <div class="upload-icon">
+                    ↑
+                </div>
+
+                <h2>
+                    اسحب الملفات هنا
+                </h2>
+
+                <p>
+                    أو اضغط لاختيار الملفات
+                </p>
+
+                <span id="fileNames">
+                    لم يتم اختيار أي ملفات
+                </span>
+
+            </label>
+
+
+            <input
+                id="fileInput"
+                name="files"
+                type="file"
+                multiple
+                hidden
+                accept=".doc,.docx,.ppt,.pptx,.pdf"
+            >
+
+
+            <div class="input-group">
+
+                <label for="outputName">
+                    اسم الملف الجديد
+                </label>
+
+                <input
+                    id="outputName"
+                    name="outputName"
+                    type="text"
+                    placeholder="اختياري"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="outputMode">
+                    طريقة الإخراج
+                </label>
+
+                <select
+                    id="outputMode"
+                    name="outputMode"
+                >
+
+                    <option value="single">
+                        كل ملف PDF مستقل
+                    </option>
+
+                    <option value="merge">
+                        دمج الملفات في PDF واحد
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div id="progressBar"></div>
+
+            </div>
+
+
+            <button
+                id="convertButton"
+                type="submit"
+            >
+                تحويل الملفات
+            </button>
+
+
+            <div id="status">
+                جاهز للتحويل
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}"
+    ></script>
+
+</body>
+
+</html>
